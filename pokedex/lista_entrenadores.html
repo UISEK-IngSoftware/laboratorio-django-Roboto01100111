@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><title>Entrenadores</title></head>
+<body>
+    <h1>Lista de Entrenadores</h1>
+    <ul>
+    {% for entrenador in entrenadores %}
+        <li>
+            <a href="{% url 'detalle_entrenador' entrenador.id %}">
+                {{ entrenador.nombre }} ({{ entrenador.ciudad_origen }})
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
