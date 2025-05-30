@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404
 from .models import Pokemon, Trainer
 
@@ -20,3 +21,19 @@ def lista_entrenadores(request):
 def detalle_entrenador(request, trainer_id):
     entrenador = get_object_or_404(Trainer, id=trainer_id)
     return render(request, 'detalle_entrenador.html', {'entrenador': entrenador})
+=======
+from django.http import HttpResponse
+from django.template import loader
+
+def index(request):
+    pokemons = ['charmander', 'pikachu', 'squirtle']
+    template = loader.get_template('index.html')
+    return HttpResponse(template.render({'pokemons': pokemons}, request))
+
+def pokemon(request, pokemon):
+    template = loader.get_template('display_pokemon.html')
+    context = {
+        'pokemon': pokemon
+    }
+    return HttpResponse(template.render(context, request))
+>>>>>>> 15fbca3b279d23cc9ee2b191b81ea8a7575611fd

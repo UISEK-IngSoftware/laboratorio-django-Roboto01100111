@@ -1,5 +1,6 @@
 from django.db import models
 
+<<<<<<< HEAD
 class Pokemon(models.Model):
     nombre = models.CharField(max_length=100)
     tipo = models.CharField(max_length=50)
@@ -16,3 +17,6 @@ class Trainer(models.Model):
 
     def __str__(self):
         return self.nombre
+=======
+# Create your models here.
+>>>>>>> 15fbca3b279d23cc9ee2b191b81ea8a7575611fd

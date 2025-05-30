@@ -14,6 +14,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+<<<<<<< HEAD
 
 from django.contrib import admin
 from django.urls import path, include
@@ -31,3 +32,12 @@ urlpatterns = [
 
 # Archivos multimedia en modo desarrollo
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('pokedex/', include('pokedex.urls'))
+]
+>>>>>>> 15fbca3b279d23cc9ee2b191b81ea8a7575611fd
