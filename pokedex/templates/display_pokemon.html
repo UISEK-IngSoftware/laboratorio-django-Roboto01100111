@@ -1,31 +1,64 @@
 {% extends "base.html" %}
-{% block title %}Listado de Pokemon{% endblock title %}
+{% block title %}
+    {% if pokemon.name %}
+        {{ pokemon.name }}
+    {% elif pokemon.nombre %}
+        {{ pokemon.nombre }}
+    {% else %}
+        Pokémon
+    {% endif %}
+{% endblock title %}
 
 {% block content %}
-<br>
-<div class="container">
-    <div class="bg-primary text-white p-4 text-center">
-        <h1>Mi Pokedex</h1>
+<div class="container mt-4" style="font-family: 'Press Start 2P', cursive; font-size: 12px;">
+
+    <div class="text-center mb-4">
+        {% if pokemon.picture %}
+            <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="img-thumbnail" style="max-height: 300px;">
+        {% elif pokemon.imagen %}
+            <img src="{{ pokemon.imagen.url }}" alt="{{ pokemon.nombre }}" class="img-thumbnail" style="max-height: 300px;">
+        {% endif %}
     </div>
 
-    <p>Has elegido el pokemon: <strong>{{ pokemon.name|default:pokemon|capfirst }}</strong></p>
+    <div class="text-center mb-3">
+        <h2 style="font-size: 18px;">
+            HAS ELEGIDO EL POKÉMON: 
+            <strong>
+                {% if pokemon.name %}
+                    {{ pokemon.name|upper }}
+                {% elif pokemon.nombre %}
+                    {{ pokemon.nombre|upper }}
+                {% else %}
+                    DESCONOCIDO
+                {% endif %}
+            </strong>
+        </h2>
+    </div>
 
-    <h3>Características</h3>
-    <ul>
-        <li>Tipo: {{ pokemon.type|default:pokemon.tipo }}</li>
-        <li>Peso: {{ pokemon.weight|default:"—" }} Kg.</li>
-        <li>Altura: {{ pokemon.height|default:"—" }} cm.</li>
-        <li>Descripción: {{ pokemon.descripcion|default:"—" }}</li>
-        <li>Nivel: {{ pokemon.nivel|default:"—" }}</li>
-        {% if pokemon.entrenador %}
-        <li>Entrenador: {{ pokemon.entrenador }}</li>
-        {% endif %}
-    </ul>
+    <div>
+        <h3 style="font-size: 16px;">CARACTERÍSTICAS</h3>
+        <ul>
+            <li>TIPO: 
+                {% if pokemon.type %}
+                    {{ pokemon.type }}
+                {% elif pokemon.tipo %}
+                    {{ pokemon.tipo }}
+                {% else %}
+                    —
+                {% endif %}
+            </li>
+            <li>PESO: {{ pokemon.weight|default:"—" }} Kg.</li>
+            <li>ALTURA: {{ pokemon.height|default:"—" }} cm.</li>
+            {% if pokemon.entrenador %}
+                <li>ENTRENADOR: {{ pokemon.entrenador }}</li>
+            {% endif %}
+        </ul>
+    </div>
 
-    {% if pokemon.picture %}
-        <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="img-thumbnail">
-    {% elif pokemon.imagen %}
-        <img src="{{ pokemon.imagen.url }}" alt="{{ pokemon.nombre }}" class="img-thumbnail">
-    {% endif %}
+    <div class="text-center mt-4">
+        <a href="{% url 'pokedex:index' %}" class="btn btn-outline-primary">
+            <i class="fa-solid fa-arrow-left"></i> Volver al inicio
+        </a>
+    </div>
 </div>
 {% endblock content %}
