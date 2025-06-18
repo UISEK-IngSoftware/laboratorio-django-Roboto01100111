@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokédex</title>
+</head>
+<body>
+    <h1>Lista de Pokémon</h1>
+
+    {% for pokemon in pokemons %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 15px;">
+            <h2>{{ pokemon.nombre }} (Nivel {{ pokemon.nivel }})</h2>
+            <p><strong>Tipo:</strong> {{ pokemon.tipo }}</p>
+            <p>{{ pokemon.descripcion }}</p>
+
+            {% if pokemon.imagen %}
+                <img src="{{ pokemon.imagen.url }}" alt="{{ pokemon.nombre }}" width="200">
+            {% endif %}
+
+            <p><a href="{% url 'detalle_pokemon' pokemon.id %}">Ver más detalles</a></p>
+        </div>
+    {% empty %}
+        <p>No hay Pokémon en la base de datos.</p>
+    {% endfor %}
+</body>
+</html>

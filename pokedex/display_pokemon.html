@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pokemon.nombre }}</title>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+        }
+        img {
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ pokemon.nombre }}</h1>
+
+    {% if pokemon.imagen %}
+        <img src="{{ pokemon.imagen.url }}" alt="{{ pokemon.nombre }}">
+    {% endif %}
+
+    <p><strong>Tipo:</strong> {{ pokemon.tipo }}</p>
+    <p><strong>Nivel:</strong> {{ pokemon.nivel }}</p>
+    <p><strong>Descripción:</strong> {{ pokemon.descripcion }}</p>
+
+    <p><a href="{% url 'index' %}">← Volver al listado</a></p>
+</body>
+</html>
+
