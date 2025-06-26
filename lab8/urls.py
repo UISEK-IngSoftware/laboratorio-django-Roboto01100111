@@ -24,6 +24,7 @@ urlpatterns = [
     path('', lambda request: redirect('/pokedex/')),
     path('admin/', admin.site.urls),
     path('pokedex/', include('pokedex.urls')),
+    path('api/', include('api.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
